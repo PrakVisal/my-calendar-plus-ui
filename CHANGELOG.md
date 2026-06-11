@@ -1,5 +1,24 @@
 # Changelog
 
+## [v1.1]
+
+### Added
+- Added custom `CalendarGrid` and `CalendarCell` grid widgets, replacing the `table_calendar` package for absolute visual control and premium aesthetics.
+- Added structured models `CalendarDay` and `CalendarEvent` with JSON serialization to match backend collections.
+- Added a Dio-powered `CalendarApiService` that loads the base URL dynamically from a `.env` file via `flutter_dotenv`.
+- Added robust Riverpod state management (`calendarDataProvider`, `selectedDayProvider`, `currentMonthProvider`, `isOfflineProvider`) with a persistent in-memory caching fallback layer for offline accessibility.
+- Added interactive widget components: `EventCard` displaying category indicators and badges, and an animated `EventPanel` featuring slide-and-fade transitions.
+- Added shared widgets: `StatusBadge` for upcoming/in-progress/past events, `DurationBadge` displaying parsed duration strings, and an illustration-led `EmptyState` view.
+- Added `AppColors` and `AppTextStyles` constants utilizing the premium Google Fonts `Plus Jakarta Sans` family.
+- Consolidated light and dark theme modes inside `main.dart`.
+- Rewrote `test/widget_test.dart` to mock `CalendarApiService` and verify screen rendering.
+
+### Fixed
+- Fixed calendar API endpoint resource mapping by targeting `/api/v1/calendar` instead of `/api/calendar`.
+- Fixed data parsing in `CalendarApiService` to manually decode JSON payloads when server headers incorrectly return a `text/html` mime type.
+- Fixed calendar day parsing to extract items nested inside the server's `payload['data']` envelope.
+- Fixed event parsing keys to support `startDateTime` and `endDateTime` response fields.
+
 ## [v1.0]
 
 ### Added
