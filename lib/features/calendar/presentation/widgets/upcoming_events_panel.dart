@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:test_app/features/calendar/domain/calendar_event.dart';
 
 class UpcomingEventsPanel extends StatelessWidget {
   const UpcomingEventsPanel({super.key, required this.events});
 
-  final List<CalendarEvent> events;
+  final List<Event> events;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +19,9 @@ class UpcomingEventsPanel extends StatelessWidget {
               ),
         ),
         const SizedBox(height: 12),
-        ...events.map(
-          (event) => Padding(
+        ...events.map((event) {
+          final time = event.allDay ? 'All day' : DateFormat.jm().format(event.startDate.toLocal());
+          return Padding(
             padding: const EdgeInsets.only(bottom: 12),
             child: Card(
               child: ListTile(
@@ -31,7 +33,7 @@ class UpcomingEventsPanel extends StatelessWidget {
                   width: 14,
                   height: 14,
                   decoration: BoxDecoration(
-                    color: event.accentColor,
+                    color: event.color,
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -39,15 +41,15 @@ class UpcomingEventsPanel extends StatelessWidget {
                   event.title,
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
-                subtitle: Text(event.time),
+                subtitle: Text(time),
                 trailing: Text(
-                  '${event.date.month}/${event.date.day}',
+                  '${event.startDate.month}/${event.startDate.day}',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),
             ),
-          ),
-        ),
+          );
+        }),
       ],
     );
   }

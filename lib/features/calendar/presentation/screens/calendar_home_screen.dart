@@ -11,30 +11,39 @@ class CalendarHomeScreen extends StatelessWidget {
     final now = DateTime.now();
     final monthStart = DateTime(now.year, now.month, 1);
     final currentMonthLabel = _monthLabel(now.month, now.year);
-    final sampleEvents = <CalendarEvent>[
-      CalendarEvent(
+    final sampleEvents = <Event>[
+      Event(
+        id: null,
         title: 'Design sync',
-        time: '09:00',
-        date: monthStart.add(const Duration(days: 2)),
-        accentColor: const Color(0xFF245BFF),
+        description: 'Design team sync',
+        startDate: monthStart.add(const Duration(days: 2, hours: 9)),
+        endDate: monthStart.add(const Duration(days: 2, hours: 10)),
+        color: const Color(0xFF245BFF),
+        allDay: false,
       ),
-      CalendarEvent(
+      Event(
+        id: null,
         title: 'Sprint review',
-        time: '13:30',
-        date: monthStart.add(const Duration(days: 6)),
-        accentColor: const Color(0xFFFF8A00),
+        description: 'Review sprint work',
+        startDate: monthStart.add(const Duration(days: 6, hours: 13, minutes: 30)),
+        endDate: monthStart.add(const Duration(days: 6, hours: 14, minutes: 30)),
+        color: const Color(0xFFFF8A00),
       ),
-      CalendarEvent(
+      Event(
+        id: null,
         title: 'Family dinner',
-        time: '19:00',
-        date: monthStart.add(const Duration(days: 11)),
-        accentColor: const Color(0xFF11A36A),
+        description: null,
+        startDate: monthStart.add(const Duration(days: 11, hours: 19)),
+        endDate: monthStart.add(const Duration(days: 11, hours: 21)),
+        color: const Color(0xFF11A36A),
       ),
-      CalendarEvent(
+      Event(
+        id: null,
         title: 'Weekly planning',
-        time: '10:15',
-        date: monthStart.add(const Duration(days: 18)),
-        accentColor: const Color(0xFF8A5CFF),
+        description: 'Plan next week',
+        startDate: monthStart.add(const Duration(days: 18, hours: 10, minutes: 15)),
+        endDate: monthStart.add(const Duration(days: 18, hours: 11, minutes: 15)),
+        color: const Color(0xFF8A5CFF),
       ),
     ];
 

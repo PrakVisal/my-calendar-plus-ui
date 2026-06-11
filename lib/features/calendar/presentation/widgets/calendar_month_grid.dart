@@ -11,7 +11,7 @@ class CalendarMonthGrid extends StatelessWidget {
 
   final DateTime month;
   final DateTime highlightedDate;
-  final List<CalendarEvent> events;
+  final List<Event> events;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class CalendarMonthGrid extends StatelessWidget {
                 final day = visibleDays[index];
                 final isCurrentMonth = day.month == month.month;
                 final isToday = _isSameDay(day, highlightedDate);
-                final eventCount = events.where((event) => _isSameDay(event.date, day)).length;
+                final eventCount = events.where((event) => _isSameDay(event.startDate, day)).length;
 
                 return AnimatedContainer(
                   duration: const Duration(milliseconds: 180),
